@@ -1,0 +1,26 @@
+app:
+  name: goku-service
+  version: 1.0.0
+  debug: true
+  port: 8080
+
+database:
+  host: localhost
+  port: 5432
+  name: goku_db
+  user: admin
+  password: supersecret
+  ssl: false
+
+aws:
+  region: us-east-1
+  bucket: goku-assets
+  services:
+    - ec2
+    - s3
+    - lambda
+
+logging:
+  level: info
+  format: json
+  output: /var/log/goku.log
