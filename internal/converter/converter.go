@@ -43,8 +43,7 @@ func Convert(data []byte, inputFmt, outputFmt string) ([]byte, error) {
 	// Step 2: Marshal into output format
 	switch outputFmt {
 	case "json":
-		// yaml unmarshals maps as map[string]interface{} but
-		// json needs map[string]interface{} — normalize keys
+		// Normalize keys for JSON output
 		intermediate = normalizeKeys(intermediate)
 		out, err := json.MarshalIndent(intermediate, "", "  ")
 		if err != nil {
@@ -62,8 +61,7 @@ func Convert(data []byte, inputFmt, outputFmt string) ([]byte, error) {
 	}
 }
 
-// normalizeKeys converts map[interface{}]interface{} (from yaml) to
-// map[string]interface{} so JSON marshaling works correctly
+
 func normalizeKeys(v interface{}) interface{} {
 	switch val := v.(type) {
 	case map[interface{}]interface{}:
